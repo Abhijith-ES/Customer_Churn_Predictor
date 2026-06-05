@@ -3,7 +3,10 @@ from pathlib import Path
 
 
 def load_data(data_path: Path) -> pd.DataFrame:
-    return pd.read_csv(data_path)
+    try:
+        return pd.read_csv(data_path)
+    except FileNotFoundError as e:
+        print("The File is not available.")
 
 def explore_data(df : pd.DataFrame):
     print(f'''
