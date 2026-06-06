@@ -31,6 +31,6 @@ def prepare_data(df: pd.DataFrame):
     return X,y
 
 def split_data(X, y):
-    return train_test_split(X, y, test_size=0.2, random_state=42)
+    return train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
 
