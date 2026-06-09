@@ -12,9 +12,8 @@ PREPROCESSOR_PATH = Path("models/preprocessor.pkl")
 
 def clean_data(df: pd.DataFrame):
     df.drop(columns = "customerID", inplace=True)
-    df['TotalCharges'].replace(r'^\s*$', np.nan, regex=True, inplace=True)
-    df['TotalCharges'] = df['TotalCharges'].astype('float64')
-    df['TotalCharges'].fillna(0, inplace=True)
+    df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
+    df['TotalCharges'] = df['TotalCharges'].fillna(0)
     
     binary_cols = [
         'Churn',       # Target Variable (Churn) : Yes - > 1, No -> 0
@@ -47,10 +46,7 @@ def save_preprocessor(preprocessor):
         exist_ok=True
     )
 
-    joblib.dump(
-        preprocessor,
-        PREPROCESSOR_PATH
-    )
+    joblib.dump(preprocessor, PREPROCESSOR_PATH)
 
     print("Preprocessor saved successfully.")
 
