@@ -27,13 +27,16 @@ X_test_processed = preprocess_test_data(X_test, preprocessor)
 logistic_regression_model = train_logistic_regression(X_train_processed, y_train)
 random_forest_model = train_random_forest(X_train_processed, y_train)
 
-# Model Evaludation :
+# Model Evaluation :
+print("Classification Report Of Logistic Regression : ")
 lr_model_results = evaluate_model(logistic_regression_model, X_test_processed, y_test)
+
+print("Classification Report Of Random Forest : ")
 rf_model_results = evaluate_model(random_forest_model, X_test_processed, y_test)
 
 print(f'''
-    Logistic Regression Model For Churn Prediction Results :
-        {lr_model_results}
-    Random Forest Model For Churn Prediction Results : 
-        {rf_model_results}
-      ''')
+Logistic Regression Model For Churn Prediction Results :
+    {lr_model_results}
+Random Forest Model For Churn Prediction Results : 
+    {rf_model_results}
+''')
