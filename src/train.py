@@ -12,7 +12,8 @@ def save_model(model, file_path: Path):
     print("Model Saved Successfully.")
 
 def train_logistic_regression(X_train, y_train):
-    model = LogisticRegression(max_iter=1000)
+    # Best hyperparameter configuration from tuning results
+    model = LogisticRegression(max_iter=1000, C=0.1, class_weight='balanced', penalty='l1', solver='liblinear')
     model.fit(X_train, y_train)
 
     model_path = Path("models/logistic_regression.pkl")
@@ -22,7 +23,12 @@ def train_logistic_regression(X_train, y_train):
     return model
 
 def train_random_forest(X_train, y_train):
-    model = RandomForestClassifier(random_state=42)
+    # Best hyperparameter configuration from tuning results
+    model = RandomForestClassifier(random_state=42, 
+                    n_estimators=300, class_weight="balanced", 
+                    max_depth=10, max_features="sqrt", 
+                    min_samples_leaf=2, min_samples_split=10)
+    
     model.fit(X_train, y_train)
 
     model_path = Path("models/random_forest.pkl")
