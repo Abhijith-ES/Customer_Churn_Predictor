@@ -535,7 +535,7 @@ Result:
 ## Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/customer_churn_predictor.git
+git clone https://github.com/Abhijith-ES/Customer_Churn_Predictor.git
 ```
 
 ---
